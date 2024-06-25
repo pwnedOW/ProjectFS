@@ -1,6 +1,3 @@
-<%@ page import="db.dto.OverallDTO" %>
-<%@ page import="db.dao.OverallDAO" %>
-<%@ page import="db.dao.UsersDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,45 +9,32 @@
 <body>
 	
 	<%
-	
-		OverallDAO overallDAO = new OverallDAO();
-		UsersDAO usersDAO = new UsersDAO();
-		
-		String email = request.getParameter("email");
+		//로그인 입력한 값을 기준으로 로그인 여부 확인!
+		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		
 		//처리 로직
 		//id pw 맞는지!
-		//DB 비교
-		
+		//DB 비교 
 		
 		//id, pw 매개변수로 -> select .. from where id='id' and pw='pw';
 		
 		//result...
-		if(usersDAO.login(email, pw) == false){
-		%>
-			<script>
-				alert('아이디 또는 비밀번호를 확인해주세요')
-				location.href = "login.jsp";
-			</script>
-			
-		<%	
-		} else {
-		%>
-		<script>
-			alert('로그인 성공');
-			location.href = "login.jsp";
-		</script>
-		<%
-		}
+// 		if(result == null){
+// 			//실패
+// 		} else {
+// 			//성공
+// 		}
 		
-		System.out.println(email + " : " + pw);
+		System.out.println(id + " : " + pw);
 		//결과 로그인 성공?
-		session.setAttribute("loginId", email);
+		session.setAttribute("loginId", id);
 		//로그인 실패? -> id, pw 잘못되었습니다. -> 로그인 화면으로 이동! 
 	%>
 	
-	
-	
+	<script>
+		alert('로그인 성공');
+		location.href = "index.jsp";
+	</script>
 </body>
 </html>
