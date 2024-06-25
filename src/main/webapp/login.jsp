@@ -10,7 +10,8 @@
 <body>
 	<div class="container_login">
 		<div class=login_login_box>
-			<p>FlameSoul</p>
+				<p>Flame Soul</p>
+				<p>Online</p>
 			<div class=login_form>
 				<form action="login_action.jsp" method="post">
 					<input type="email" name="id" placeholder="EMAIL"> <br>
@@ -20,10 +21,10 @@
 			</div>
 			<div class="login_find">
 				<div class="login_find_left">
-					<button onclick="login_join()">> 회원가입</button>
+					<button onclick="signUp()">> 회원가입</button>
 					<script>
-						function login_join() {
-							location.href = "login_join_action.jsp";
+						function signUp() {
+							location.href = "signUp.jsp";
 						}
 					</script>
 				</div>

@@ -71,10 +71,10 @@
 				<%
 				if (session.getAttribute("loginId") == null) {
 				%>
-				<button onclick="join()">회원가입</button>
+				<button onclick="signUp()">회원가입</button>
 				<script>
-					function join() {
-						location.href = "join.jsp";
+					function signUp() {
+						location.href = "signUp.jsp";
 					}
 				</script>
 
@@ -89,7 +89,14 @@
 				//Object 객체 타입 -> String 
 				String loginId = session.getAttribute("loginId").toString();
 				%>
-				<h1><%=loginId%></h1>
+				<p><%=loginId%></p>
+				<button onclick="myPage()">마이페이지</button>
+				<script>
+					function myPage() {
+						location.href = "myPage.jsp";
+					}
+				</script>
+				
 				<button onclick="logout()">로그아웃</button>
 				<script>
 					function logout() {
@@ -122,11 +129,11 @@
 							}
 						</script>
 					</div>
-					<div class=index_join_box>
-						<button onclick="join()">> 회원가입</button>
+					<div class=index_signUp_box>
+						<button onclick="signUp()">> 회원가입</button>
 						<script>
-							function join() {
-								location.href = "join.jsp";
+							function signUp() {
+								location.href = "signUp.jsp";
 							}
 						</script>
 
