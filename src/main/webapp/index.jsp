@@ -42,7 +42,7 @@
 							<li><a href="#">도적</a></li>
 							<li><a href="#">해적</a></li>
 						</ul></li>
-					<li><a href="#">캐시샵</a>
+					<li><a href="cashShop.jsp">캐시샵</a>
 						<ul>
 							<li><a href="#">전체보기</a></li>
 							<li><a href="#">장비아이템</a></li>
@@ -96,7 +96,7 @@
 						location.href = "myPage.jsp";
 					}
 				</script>
-				
+
 				<button onclick="logout()">로그아웃</button>
 				<script>
 					function logout() {
@@ -116,10 +116,14 @@
 						<button class=btn_start onclick="gameStart()">GAME START</button>
 						<script>
 							function gameStart() {
-								location.href = "gamestart.jsp";
+								location.href = "gameStart_action.jsp";
 							}
 						</script>
 					</div>
+
+					<%
+					if (session.getAttribute("loginId") == null) {
+					%>
 					<div class=index_login_box>
 						<p>이메일로 로그인하세요.</p>
 						<button class=index_btn_login onclick="login()">로그인</button>
@@ -144,6 +148,42 @@
 							}
 						</script>
 					</div>
+					<%
+					} else {
+					//Object 객체 타입 -> String 
+					String loginId = session.getAttribute("loginId").toString();
+					%>
+					<div class=index_login_box>
+						<p><%=loginId%>님 반갑습니다.
+						</p>
+						<button class=index_btn_login onclick="logout()">LOGOUT</button>
+						<script>
+							function logout() {
+								location.href = "logout_action.jsp";
+							}
+						</script>
+					</div>
+
+					<div class=index_signUp_box>
+						<button onclick="myPage()">> 마이페이지</button>
+						<script>
+							function myPage() {
+								location.href = "myPage.jsp";
+							}
+						</script>
+
+						<button onclick="find()">> 최종접속시간</button>
+						<script>
+							function join() {
+								location.href = "find.jsp";
+							}
+						</script>
+					</div>
+
+					<%
+					}
+					%>
+
 				</div>
 			</div>
 		</div>

@@ -10,16 +10,24 @@
 <body>
 	<div class="container_signUp">
 		<div class=signUp_signUp_box>
-			<p>FlameSoul</p>
+			<p>Flame Soul</p>
 			<p>Online</p>
 			<div class=signUp_form>
 				<form action="signUp_action.jsp" method="post">
 					<input type="email" name="id" placeholder="EMAIL"> <br>
 					<input type="password" name="pw" placeholder="PASSWORD"> <br>
-					<input type="text" name="pw" placeholder="NAME"> <br>
-					<input type="date" name="pw" placeholder="BIRTH"> <br>
-					<input type="tel" name="pw" placeholder="TEL"> <br>
-					<button type="submit">SIGN UP</button>
+					<input type="password" name="pw" placeholder="PASSWORD CHECK"> <br>
+					<input type="text" name="name" placeholder="NAME"> <br>
+					<input type="text" name="birth" placeholder="BIRTH ex)981026"> <br>
+					<input type="tel" name="tel" placeholder="TEL"> <br>
+
+					<button onclick="signUp_action()">SIGN UP</button>
+					<script>
+						function signUp_action() {
+							location.href = "signUp_action.jsp";
+						}
+					</script>
+
 				</form>
 			</div>
 

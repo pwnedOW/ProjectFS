@@ -29,16 +29,10 @@
 					</script>
 				</div>
 				<div class=login_find_right>
-					<button class="findId" onclick="findId()">> ID 찾기</button>
+					<button class="findAcount" onclick="findAcount()">> ID/PW 찾기</button>
 					<script>
-						function findId() {
-							location.href = "findId.jsp";
-						}
-					</script>
-					<button class="findPw" onclick="findPw()">> 비밀번호 찾기</button>
-					<script>
-						function findPw() {
-							location.href = "findPw.jsp";
+						function findAcount() {
+							location.href = "findAcount.jsp";
 						}
 					</script>
 				</div>
