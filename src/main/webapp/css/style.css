@@ -96,6 +96,11 @@
 	width: 15%
 }
 
+.top_nav_left a{
+	text-decoration: none;
+	color: #807876;
+}
+
 .top_nav_right {
 	width: 15%
 }
@@ -115,10 +120,9 @@
 .contents_img {
 	background-image: url('../img/banner.jpg');
 	width: 100%;
-	height: 700px;
+	height: 800px;
 	background-size: cover;
 	background-position: center;
-	background-size: cover;
 }
 
 .img {
@@ -130,11 +134,10 @@
 
 .index_user_box {
 	position: absolute;
-	bottom: 15%;
-	top: 30%;
+	bottom: 10%;
+	top: 20%;
 	right: 0px;
 	width: 30%;
-	height: 60%;
 	background-color: #272525;
 	min-width: 400px;
 }
@@ -349,6 +352,11 @@
 	margin-left: 40px;
 }
 
+.cash_nav_left a{
+	text-decoration: none;
+	color: #807876;
+}
+
 .cash_nav_center {
 	display: flex;
 	font-size: 2rem;
@@ -384,98 +392,149 @@
 	margin-bottom: 20px;
 }
 
-.cash_nav_top button{
+.cash_nav_top button {
 	margin-left: 20px;
 	background-color: #A18C6D;
 	color: white;
 	border: none;
 	width: 100px;
-    height: 35px;
+	height: 35px;
 }
 
 .cash_contents {
-    font-family: Arial, sans-serif;
+	font-family: Arial, sans-serif;
 }
 
 .tabs {
-    overflow: hidden;
+	overflow: hidden;
 	background-color: #474747;
 	display: flex;
 	min-width: 1400px;
 }
 
-
-
 .tabs button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-    font-size: 17px;
-    width: 25%;
-    color: #939986;
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	font-size: 17px;
+	width: 25%;
+	color: #939986;
 }
 
 .tabs button:hover {
-    background-color: #222222;
+	background-color: #222222;
 }
 
 .tabs button.active {
-    background-color: #222222;
-    color: white;
+	background-color: #222222;
+	color: white;
 }
 
 .tabcontent {
-    display: none;
-    padding: 20px;
-    min-height: 600px;
+	display: none;
+	padding: 20px;
+	min-height: 600px;
 }
 
 .cash_container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-    min-width: 1400px;
-}
-
-.item {
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    margin: 10px;
-    padding: 20px;
-    text-align: center;
-    width: 200px;
-}
-
-.item img {
-    max-width: 100%;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 15px;
-}
-
-.item .price {
-    color: #e74c3c;
-    font-weight: bold;
-}
-
-#equipment_item {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 20px;
 	min-width: 1400px;
 }
 
+.item {
+	background-color: white;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin: 10px;
+	padding: 20px;
+	text-align: center;
+	width: 20%;
+}
 
+.item button {
+	cursor: pointer;
+	border: none;
+	margin-top: 5px;
+	background-color: #474747;
+	color: #8791A0;
+	width: 80px;
+	height: 30px;
+}
 
+.item button:hover {
+	cursor: pointer;
+	background-color: #222222;
+	color: white;
+}
 
+.item img {
+	max-width: 100%;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 15px;
+}
 
+.item .price {
+	color: #e74c3c;
+	font-weight: bold;
+}
 
+.buy_item_container {
+	display: flex;
+	justify-content: center;
+    background-color: #efefef;
+    padding-top: 100px;
+	text-align: center;
+}
 
+.buy_item_container p {
+	margin-bottom: 10px;
+	font-size: 1.5rem;
+	font-family: Arial, sans-serif;
+}
 
+.buy_input {
+	margin-top: 30px;
+}
 
+.buy_item_container button {
+	cursor: pointer;
+	border: none;
+	margin-top: 5px;
+	background-color: #474747;
+	color: #8791A0;
+	width: 80px;
+	height: 30px;
+}
 
+.buy_item_container button:hover {
+	cursor: pointer;
+	background-color: #222222;
+	color: white;
+}
 
+.precautions p {
+	font-size: 0.8rem;
+}
 
+.precautions h3 {
+	margin-top: 100px;
+}
+
+.item_infor {
+	border: 1px solid #b3b3b3;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	padding: 30px 20px;
+	margin-bottom: 30px;
+	background-color: white;
+}

@@ -11,9 +11,8 @@
 	<div class="container">
 		<div class="top_nav">
 			<div class="top_nav_left">
-				<p>Flame Soul</p>
-				<p>Online</p>
-
+				<p><a href="index.jsp">Flame Soul</a></p>
+				<p><a href="index.jsp">Online</a></p>
 			</div>
 
 			<div class="top_nav_center">
