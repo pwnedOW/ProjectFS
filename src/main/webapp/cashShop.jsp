@@ -21,12 +21,7 @@
 			</div>
 
 			<div class="cash_nav_right">
-				<button onclick="cashCharge()">캐시충전</button>
-				<script>
-					function cashCharge() {
-						location.href = "cashCharge.jsp";
-					}
-				</script>
+				<button onclick="openCashChargeWindow()">캐시충전</button>
 				<button onclick="cashHistory()">구매내역</button>
 				<script>
 					function cashHistory() {
