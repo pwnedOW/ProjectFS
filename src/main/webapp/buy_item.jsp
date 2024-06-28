@@ -14,8 +14,8 @@
 </head>
 <body>
 	<div class="buy_item_container">
-		<div class="buy_item_infor">
-			<div class="item_infor">
+		<div class="buy_item_info">
+			<div class="item_info">
 				<img src="<%=request.getParameter("itemImage")%>" alt="item image">
 				<p><%=request.getParameter("itemInfo")%></p>
 				<p><%=request.getParameter("itemPrice")%></p>

@@ -55,14 +55,14 @@
 			//Object 객체 타입 -> String 
 			String loginId = session.getAttribute("loginId").toString();
 			%>
-			<div class="user_cash_infor">
+			<div class="user_cash_info">
 
-				<div class="cash_infor_left">
+				<div class="cash_info_left">
 					<p><%=loginId%></p>
 					<p>보유 캐시 : 100,000</p>
 				</div>
 
-				<div class="cash_infor_left">
+				<div class="cash_info_left">
 					<button onclick="logout()">로그아웃</button>
 					<script>
 						function logout() {
