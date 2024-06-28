@@ -59,19 +59,17 @@
 
 				<div class="cash_infor_left">
 					<p><%=loginId%></p>
+					<p>보유 캐시 : 100,000</p>
 				</div>
 
 				<div class="cash_infor_left">
-					<p>보유 캐시 :</p>
+					<button onclick="logout()">로그아웃</button>
+					<script>
+						function logout() {
+							location.href = "logout_action.jsp";
+						}
+					</script>
 				</div>
-				
-				<button onclick="logout()">로그아웃</button>
-				<script>
-					function logout() {
-						location.href = "logout_action.jsp";
-					}
-				</script>
-				
 			</div>
 			<%
 			}
