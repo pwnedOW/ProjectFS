@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const initialAmount = '50000'; // The initial amount
     const currentCashElement = document.getElementById("currentCash");
-    const afterChargeCashElement = document.getElementById("afterChargeCash");
     const amountSelectElement = document.getElementById("amountSelect");
 
     let currentCash = parseInt(currentCashElement.textContent.replace(/,/g, ''));
@@ -9,15 +8,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Set the initial selected value in the dropdown
     amountSelectElement.value = initialAmount;
-
-    // Update the after charge cash amount
-    afterChargeCashElement.textContent = (currentCash + chargeAmount).toLocaleString();
-
-    // Function to handle amount selection change
-    window.selectAmount = function(amount) {
-        chargeAmount = parseInt(amount.replace(/,/g, ''));
-        afterChargeCashElement.textContent = (currentCash + chargeAmount).toLocaleString();
-    };
 });
 
 function handleFormSubmit(event) {

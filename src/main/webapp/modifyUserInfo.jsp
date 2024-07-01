@@ -28,7 +28,7 @@
 
 			<div class="modify_nav_right">
 				<%
-				if (session.getAttribute("loginId") == null) {
+				if (session.getAttribute("loginEmail") == null) {
 				%>
 				<button onclick="signUp()">회원가입</button>
 				<script>

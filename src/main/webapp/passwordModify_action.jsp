@@ -25,28 +25,21 @@
 
 		boolean checkPasswordResult = usersDAO.checkPassword(loginPassword);
 
-		int modifyPasswordResult = usersDAO.modifyPassword(password, loginPassword);
+		
 
 		System.out.println("현재 비밀번호 : " + loginPassword);
 		System.out.println("변경할 비밀번호 : " + password);
 		System.out.println("비밀번호 확인 : " + passwordCheck);
 
-		if (modifyPasswordResult > 0) {
-			if (checkPasswordResult && password.equals(passwordCheck)) {
+		
+		if (checkPasswordResult && password.equals(passwordCheck)) {
+			usersDAO.modifyPassword(password, loginPassword);
 	%>
-				<script>
-					alert('정상적으로 수정되었습니다. 다시 로그인해주세요');
-					location.href = "logout_action.jsp";
-				</script>
+			<script>
+				alert('정상적으로 수정되었습니다. 다시 로그인해주세요');
+				location.href = "logout_action.jsp";
+			</script>
 	<%
-			} else {
-	%>
-				<script>
-					alert('수정할 수 없습니다.');
-					history.back();
-				</script>
-	<%
-			}
 		} else {
 	%>
 			<script>
