@@ -1,3 +1,7 @@
+<%@page import="db.dto.Time_logDTO"%>
+<%@page import="java.util.List"%>
+<%@ page import = "db.dao.Time_logDAO" %>
+<%@ page import = "db.dao.UsersDAO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,7 +9,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./css/style.css">
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -171,13 +174,16 @@
 								location.href = "myPage.jsp";
 							}
 						</script>
-
-						<button onclick="find()">> 최종접속시간</button>
-						<script>
-							function join() {
-								location.href = "find.jsp";
-							}
-						</script>
+						<%
+						UsersDAO usersDAO = new UsersDAO();
+						String email = session.getAttribute("loginEmail").toString();
+						
+						int user_no = usersDAO.getUser_noByEmail(email);
+                        Time_logDAO time_logDAO = new Time_logDAO();
+                        String last_login = time_logDAO.getLast_login(user_no);
+                        
+						%>
+						<button><%=last_login%></button>
 					</div>
 
 					<%
