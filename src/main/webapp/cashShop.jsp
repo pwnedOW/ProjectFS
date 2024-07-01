@@ -14,6 +14,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/style.css">
+<script src="cashCharge.js"></script>
 </head>
 <body>
 
