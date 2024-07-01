@@ -8,9 +8,6 @@
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-	<%
-	String loginEmail = session.getAttribute("loginEmail").toString();
-	%>
 	<div class="modify_container">
 		<div class="modify_nav">
 			<div class="modify_nav_left">
@@ -45,8 +42,10 @@
 				</script>
 				<%
 				} else {
+				//Object 객체 타입 -> String 
+				String loginId = session.getAttribute("loginId").toString();
 				%>
-				<p><%=loginEmail%></p>
+				<p><%=loginId%></p>
 
 				<button onclick="logout()">로그아웃</button>
 				<script>
@@ -74,7 +73,7 @@
 			<div id="change_email" class="modify_contents_right">
 				<div class="userInfo_container">
 					<div class="change">
-						<p>현재 이메일 <%=loginEmail%>  </p>
+						<p>현재 이메일 <%-- <%=user.getEmail()%> --%> </p>
 						<!--이메일 수정-->
 						<form action="emailModify_action.jsp" method="post">
 							<label>새 이메일</label> <input type="email" name="modifyingEmail">
@@ -102,7 +101,47 @@
 					<div class="change">
 						<form action="withdrawalCheck_action.jsp" method="post"
 							id="form_withdrawal">
-							<input type="checkbox" id="chk_box"><p>위의 회원탈퇴 시 주의사항을 모두 확인하였습니다.</p><br>
+							<ul>
+								<li>
+									<h2>1. 게임이용 불가, 캐릭터 삭제</h2>
+									<p>
+										계정 삭제 시 영구히 사용할 수 없으며, 해당 계정으로 구매한 모든 게임(캐릭터, 아이템, 전적, 유료 콘텐츠 일체) 또한 영구히 삭제됩니다.
+									</p>
+								<li>
+								
+								<li>
+									<h2>2. 게시글 비공개 처리, 삭제</h2>
+									<p>
+										 탈퇴 후에도 등록하였던 게시물(커뮤니티 게시글 및 댓글)은 그대로 남아있습니다.<br>
+										 삭제를 원하는 게시글이 있다면 반드시 탈퇴 전 비공개 처리하거나 삭제하시기 바랍니다.
+									</p>
+								<li>
+								
+								<li>
+									<h2>3. 회원탈퇴 복구 가능 기간</h2>
+									<p>
+										회원탈퇴를 신청한 계정은 신청일로부터 15일간 계정 복구(탈퇴 취소)가 가능하며,<br>
+										기간 경과(신청일로부터 30일간 보관) 이후 영구 삭제 처리됩니다.
+									</p>
+								<li>
+								
+								<li>
+									<h2>4. 개인정보 수집 에 대한 내용</h2>
+									<p>
+										법령에 따라 보존의무가 있는 정보는 회원 탈퇴 이후에도 해당 기간동안 보관될 수 있습니다.
+									</p>
+								<li>
+								
+								<li>
+									<h2>5. 연결된 외부 서비스 이용 불가</h2>
+									<p>
+										회원탈퇴 시 계정으로 로그인하여 사용한 외부 서비스들은 이용할 수 없습니다.<br>
+										외부 서비스에 이미 전달된 개인 정보와 이용 기록의 삭제를 원하시는 경우 해당 서비스에서 직접 탈퇴를 진행해 주세요.
+									</p>
+								<li>
+							</ul>
+							
+							<input type="checkbox" id="chk_box">위의 회원탈퇴 시 주의사항을 모두 확인하였습니다.<br>
 							<button type="submit">회원 탈퇴</button>
 							<br>
 						</form>

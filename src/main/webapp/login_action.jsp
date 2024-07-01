@@ -19,8 +19,7 @@
 		
 		//처리 로직
 		//id pw 맞는지!
-		//DB 비교
-		
+		//DB 비교 
 		
 		//id, pw 매개변수로 -> select .. from where id='id' and pw='pw';
 		if("admin@fsonline.com".equals(email) && "1234".equals(password)){

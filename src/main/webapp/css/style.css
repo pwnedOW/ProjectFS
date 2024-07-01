@@ -737,7 +737,7 @@
 }
 
 .modify_contents_left {
-    width: 400px;
+    width: 30%;
     background-color: #f9f9f9;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -762,9 +762,31 @@
 }
 
 .modify_contents_right {
-    width: 80%;
     padding: 20px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#change_email,
+#change_password,
+#withdrawal {
+	width: 100%;
+}
+
+#form_withdrawal {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#form_withdrawal ol, ul, li {
+    list-style: none;
+}
+
+#form_withdrawal li {
+    margin-bottom: 40px;
+}
+
+#form_withdrawal h2 {
+    margin-bottom: 5px;
 }
 
 .tabcontent {
@@ -821,15 +843,74 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    margin-top: 30px;
 }
 
 #form_withdrawal button:hover {
     background-color: #e63939;
 }
 
+/*캐시충전창*/
 
+.cash-charge-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 
+.cash-charge-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
 
+.cash-charge-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.cash-charge-container label {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.cash-charge-container input[type="number"],
+.cash-charge-container input[type="text"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.cash-charge-container .payment-methods {
+    margin-bottom: 20px;
+}
+
+.cash-charge-container .payment-methods h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.cash-charge-container .payment-methods label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.cash-charge-container button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.cash-charge-container button:hover {
+    background: #0056b3;
+}
 
 
 
