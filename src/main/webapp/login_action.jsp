@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%
+		<%
 	
 		OverallDAO overallDAO = new OverallDAO();
 		UsersDAO usersDAO = new UsersDAO();
@@ -32,12 +32,7 @@
 		<%
 		}
 		
-		//result...
 		System.out.println(email + " : " + password);
-		//결과 로그인 성공?
-		session.setAttribute("loginEmail", email);
-		session.setAttribute("loginPassword", password);
-		
 		if(usersDAO.login(email, password) == false){
 		%>
 			<script>
@@ -45,20 +40,16 @@
 				location.href = "login.jsp";
 			</script>
 
-	<%	
-			}else{
-	%>
+		<%	
+		} else {
+			session.setAttribute("loginEmail", email);
+			session.setAttribute("loginPassword", password);
+		%>
 		<script>
-			alert('로그인 성공');
 			location.href = "index.jsp";
 		</script>
-	<%
+		<%
 		}
-		
-		
-		//로그인 실패? -> id, pw 잘못되었습니다. -> 로그인 화면으로 이동! 
-				
-		
-	%>
+		%>
 </body>
 </html>

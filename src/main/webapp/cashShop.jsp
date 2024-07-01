@@ -30,8 +30,9 @@
 	String email = (String) session.getAttribute("loginEmail");
 	
 	
-	int  user_no = usersDAO.getUser_noByEmail(email);
-	int  balance = overallDAO.getBalanceByUser_no(user_no);
+	int user_no = usersDAO.getUser_noByEmail(email);
+	int balance = overallDAO.getBalanceByUser_no(user_no);
+
 	%>
 	<div class="cash_contents">
 		<div class="cash_nav">
@@ -86,7 +87,7 @@
 				<div class="cash_info_left">
 					<p><%=email%></p>
 					<p>
-						보유 캐시 :<%=balance %></p>
+						보유 캐시 : <%=balance %> 원</p>
 				</div>
 
 				<div class="cash_info_left">

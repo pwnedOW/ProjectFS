@@ -25,18 +25,30 @@
 	
 	int user_no = usersDAO.getUser_noByEmail(email);
 	int item_no = cash_itemDAO.getItem_noByItem_name(item_name);
+	int balance = overallDAO.getBalanceByUser_no(user_no);
 	
 	System.out.println("유저번호 : " + user_no);
 	System.out.println("유저잔액 : " + overallDAO.getBalanceByUser_no(user_no));
 	System.out.println("아이템번호 : " + item_no);
 	
-	cash_logDAO.buyItem(user_no, item_price, item_no);
-%>
-
-
+	
+	
+	if(balance < item_price){
+	%>		
+	<script>
+		alert('캐시잔액이 부족합니다.');
+		window.close();
+	</script>	
+	<%
+	} else {
+		cash_logDAO.buyItem(user_no, item_price, item_no);
+	%>
 	<script>
 		alert('구매가 완료되었습니다.');
 		window.close();
 	</script>
+	<%
+	}
+	%>
 </body>
 </html>
