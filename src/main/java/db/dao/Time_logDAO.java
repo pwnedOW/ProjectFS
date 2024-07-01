@@ -24,19 +24,12 @@ public class Time_logDAO {
 		try {
 			conn = DBConnectionManager.connectDB();
 
-			String query = "select * from time_log where user_no = ?";
+			String query = "UPDATE time_log SET last_login = SYSDATE WHERE user_no = ?";
 
 			psmt = conn.prepareStatement(query);
 			psmt.setInt(1, user_no);
 
-			rs = psmt.executeQuery(); // 쿼리 DB전달 실행
-
-			if (rs.next()) { 
-				int rsUser_no = rs.getInt("user_no");		
-				Timestamp rsLast_login = rs.getTimestamp("last_login");	
-
-				time_log = new Time_logDTO(rsUser_no, rsLast_login);
-			}
+			psmt.executeUpdate(); // 쿼리 DB전달 실행
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -47,7 +40,9 @@ public class Time_logDAO {
 
 		return time_log;	//객체 or null
 	}
+	
 
+	
 	public List<Time_logDTO> getTime_logList() {
 
 		List<Time_logDTO> time_logList = null;
@@ -90,4 +85,38 @@ public class Time_logDAO {
 
 	}
 
+	public String getLast_login(int user_no) {
+
+		String last_login = null;
+
+		try {
+			conn = DBConnectionManager.connectDB();
+
+			String query = "SELECT last_login"
+						 + " FROM time_log"
+						 + " WHERE user_no = ?";
+			//"select * from time_log" users ingame_money;
+
+			psmt = conn.prepareStatement(query);
+			psmt.setInt(1, user_no);
+
+			rs = psmt.executeQuery(); // 쿼리 DB전달 실행
+			
+			 if (rs.next()) {
+	            	String rsLast_login = rs.getString("last_login");
+	            	
+	            	last_login = rsLast_login;
+	            }
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs);	//conn psmt rs
+		}
+
+		return last_login;
+
+	}
+	
 }
