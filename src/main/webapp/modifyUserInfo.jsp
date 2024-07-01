@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+	<%
+	String loginEmail = session.getAttribute("loginEmail").toString();
+	%>
 	<div class="modify_container">
 		<div class="modify_nav">
 			<div class="modify_nav_left">
@@ -42,10 +45,8 @@
 				</script>
 				<%
 				} else {
-				//Object 객체 타입 -> String 
-				String loginId = session.getAttribute("loginId").toString();
 				%>
-				<p><%=loginId%></p>
+				<p><%=loginEmail%></p>
 
 				<button onclick="logout()">로그아웃</button>
 				<script>
@@ -73,7 +74,7 @@
 			<div id="change_email" class="modify_contents_right">
 				<div class="userInfo_container">
 					<div class="change">
-						<p>현재 이메일 <%-- <%=user.getEmail()%> --%> </p>
+						<p>현재 이메일 <%=loginEmail%>  </p>
 						<!--이메일 수정-->
 						<form action="emailModify_action.jsp" method="post">
 							<label>새 이메일</label> <input type="email" name="modifyingEmail">
@@ -101,7 +102,7 @@
 					<div class="change">
 						<form action="withdrawalCheck_action.jsp" method="post"
 							id="form_withdrawal">
-							<input type="checkbox" id="chk_box"><br>
+							<input type="checkbox" id="chk_box"><p>위의 회원탈퇴 시 주의사항을 모두 확인하였습니다.</p><br>
 							<button type="submit">회원 탈퇴</button>
 							<br>
 						</form>

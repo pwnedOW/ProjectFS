@@ -10,7 +10,7 @@ function openPurchaseWindow() {
     var encodedItemPrice = encodeURIComponent(itemPrice);
 
     // buy_item.jsp로 전달할 URL 생성
-    var url = `buy_item.jsp?`;
+    var url = `buy_item.jsp?itemInfo=${encodedItemInfo}&itemImage=${encodedItemImage}&itemPrice=${encodedItemPrice}`;
 
     // 팝업 창 열기
     var width = 800;

@@ -267,9 +267,15 @@ public class OverallDAO {
 
         try {
             conn = DBConnectionManager.connectDB();
-            String query = "SELECT balance FROM cash_log WHERE user_no = ?";
+            String query = "SELECT NVL(MAX(balance), 0) AS balance"
+            		+ "    FROM cash_log"
+            		+ "    WHERE user_no = ?"
+            		+ "        AND log_no ="
+            		+ "                    (SELECT MAX(log_no) FROM cash_log"
+            		+ "                    WHERE user_no = ?)";
             psmt = conn.prepareStatement(query);
             psmt.setInt(1, user_no);
+            psmt.setInt(2, user_no);
             rs = psmt.executeQuery();
 
             if (rs.next()) {

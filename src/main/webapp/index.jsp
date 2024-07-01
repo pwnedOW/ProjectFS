@@ -85,6 +85,7 @@
 				</script>
 				<%
 				} else {
+				//Object 객체 타입 -> String 
 				String loginId = session.getAttribute("loginEmail").toString();
 				%>
 				<p><%=loginId%></p>
@@ -148,11 +149,12 @@
 					</div>
 					<%
 					} else {
-					String loginId = session.getAttribute("loginEmail").toString();
+					//Object 객체 타입 -> String 
+					if(session.getAttribute("loginEmail") != null) {
+						String loginEmail = session.getAttribute("loginEmail").toString();
 					%>
 					<div class=index_login_box>
-						<p><%=loginId%>님 반갑습니다.
-						</p>
+						<p><%=loginEmail%>님 반갑습니다.</p>
 						<button class=index_btn_login onclick="logout()">LOGOUT</button>
 						<script>
 							function logout() {
@@ -178,6 +180,7 @@
 					</div>
 
 					<%
+					}
 					}
 					%>
 

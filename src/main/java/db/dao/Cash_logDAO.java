@@ -33,10 +33,10 @@ public class Cash_logDAO {
 			rs = psmt.executeQuery(); // 쿼리 DB전달 실행
 
 			while (rs.next()) { 
-				
+
 				if(cash_logList == null)
 					cash_logList = new ArrayList<Cash_logDTO>();
-				
+
 					Cash_logDTO cash_log = new Cash_logDTO(
 							rs.getInt("user_no"),
 							rs.getInt("log_no"),
@@ -60,5 +60,82 @@ public class Cash_logDAO {
 		}
 
 		return cash_logList;	//객체 or null
+	}
+
+	public List<Cash_logDTO> chargeCashByUser_no( int user_no, int amount) {
+
+		List<Cash_logDTO> cash_logList = null;
+		int result = 0;
+
+		try {
+			conn = DBConnectionManager.connectDB();
+
+			String query = "INSERT INTO cash_log (user_no, log_no, chrg_cash, use_cash, balance, chrg_cash_time,"
+					+ "                      item_purchase_time, item_no, item_count) "
+					+ "VALUES (?, cash_log_seq.nextval, ?, null, "
+					+ "        (SELECT NVL(MAX(balance) + ? , 0)"
+					+ "    FROM cash_log"
+					+ "    WHERE user_no = ?"
+					+ "        AND log_no = ("
+					+ "                    SELECT MAX(log_no) FROM cash_log"
+					+ "                    WHERE user_no = ?)), "
+					+ "        SYSDATE, null, null, null)";
+
+			psmt = conn.prepareStatement(query);
+			psmt.setInt(1, user_no);
+			psmt.setInt(2, amount);
+			psmt.setInt(3, amount);
+			psmt.setInt(4, user_no);
+			psmt.setInt(5, user_no);
+
+			result = psmt.executeUpdate(); // 쿼리 DB전달 실행
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs);
+		}
+
+		return cash_logList;
+	}
+	
+	public List<Cash_logDTO> buyItem(int user_no, int item_price, int item_no) {
+
+		List<Cash_logDTO> cash_logList = null;
+		int result = 0;
+
+		try {
+			conn = DBConnectionManager.connectDB();
+
+			String query = "INSERT INTO cash_log (user_no, log_no, chrg_cash, use_cash, balance, chrg_cash_time,"
+					+ "                      item_purchase_time, item_no, item_count) "
+					+ "VALUES (?, cash_log_seq.nextval, null, ?, "
+					+ "        (SELECT NVL(MAX(balance) - ? , 0)"
+					+ "    FROM cash_log"
+					+ "    WHERE user_no = ?"
+					+ "        AND log_no = ("
+					+ "                    SELECT MAX(log_no) FROM cash_log"
+					+ "                    WHERE user_no = ?)), "
+					+ "        null, SYSDATE, ?, 1)";
+
+			psmt = conn.prepareStatement(query);
+			psmt.setInt(1, user_no);
+			psmt.setInt(2, item_price);
+			psmt.setInt(3, item_price);
+			psmt.setInt(4, user_no);
+			psmt.setInt(5, user_no);
+			psmt.setInt(6, item_no);
+
+			result = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs);
+		}
+
+		return cash_logList;
 	}
 }
