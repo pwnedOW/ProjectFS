@@ -14,6 +14,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="./css/style.css">
+<script src="buyItem.js"></script>
 <script src="cashCharge.js"></script>
 </head>
 <body>
@@ -121,7 +122,7 @@
 					<p><%=equipment_item.getItem_name() %></p>
 					<br> <span class="price"><%=equipment_item.getItem_price()%></span><br>
 
-                <button onclick="openPurchaseWindow()">구매하기</button>
+                <button onclick="openPurchaseWindow(event)">구매하기</button>
             </div>
 				<% 
         }
@@ -139,7 +140,7 @@
 					<p><%=consumption_item.getItem_name() %></p>
 					<br> <span class="price"><%=consumption_item.getItem_price()%></span><br>
 
-                <button onclick="openPurchaseWindow()">구매하기</button>
+                <button onclick="openPurchaseWindow(event)">구매하기</button>
             </div>
 		<% 
         }
@@ -158,7 +159,7 @@
 							<p><%=probability_item.getItem_name() %></p>
 							<br> <span class="price"><%=probability_item.getItem_price()%></span><br>
 		
-                <button onclick="openPurchaseWindow()">구매하기</button>
+                <button onclick="openPurchaseWindow(event)">구매하기</button>
             </div>
 				<% 
 		        }
@@ -177,7 +178,7 @@
 							<p><%=pet_item.getItem_name() %></p>
 							<br> <span class="price"><%=pet_item.getItem_price()%></span><br>
 		
-	                <button onclick="openPurchaseWindow()">구매하기</button>
+	                <button onclick="openPurchaseWindow(event)">구매하기</button>
 	            </div>
 				<% 
 		        }
