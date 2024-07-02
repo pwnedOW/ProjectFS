@@ -79,7 +79,7 @@
 			<%
 			} else {
 			//Object 객체 타입 -> String 
-			String loginId = session.getAttribute("loginEmail").toString();
+			String loginId = session.getAttribute("loginId").toString();
 			%>
 			<div class="user_cash_info">
 

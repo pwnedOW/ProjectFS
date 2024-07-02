@@ -1,3 +1,33 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const initialAmount = '50000'; // The initial amount
+    const currentCashElement = document.getElementById("currentCash");
+    const amountSelectElement = document.getElementById("amountSelect");
+
+    let currentCash = parseInt(currentCashElement.textContent.replace(/,/g, ''));
+    let chargeAmount = parseInt(initialAmount.replace(/,/g, ''));
+
+    // Set the initial selected value in the dropdown
+    amountSelectElement.value = initialAmount;
+});
+
+function handleFormSubmit(event) {
+    console.log("Form submit event triggered");
+    event.preventDefault(); // Prevent the default form submission
+
+    // Gather form data
+    const form = event.target;
+    const formData = new FormData(form);
+    const amount = formData.get('amount');
+
+    // Optionally, you can add an AJAX request here to send the data to the server
+
+    // Show alert message
+    alert("충전이 완료되었습니다.");
+
+    // Close the window
+    window.close();
+}
+
 function openCashChargeWindow(options = {}) {
     // 기본 옵션 설정
     const defaultOptions = {
