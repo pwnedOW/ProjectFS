@@ -1,4 +1,4 @@
-function openPurchaseWindow() {
+function openPurchaseWindow(event) {
     // 클릭된 아이템의 정보 가져오기
     var itemInfo = event.target.parentNode.querySelector('p').innerText.trim();
     var itemImage = event.target.parentNode.querySelector('img').src;
@@ -36,11 +36,45 @@ function openPurchaseWindow() {
 
     if (newWindow) {
         newWindow.focus();
+		keepFocus(newWindow);
+		disableCashShopEvents();
+		newWindow.onbeforeunload = enableCashShopEvents;
     } else {
         alert("팝업이 차단되어 있습니다. 팝업을 허용으로 변경해주세요.");
     }
 	
+	function keepFocus(popup) {
+	    setInterval(() => {
+	        if (popup && !popup.closed) {
+	            popup.focus();
+	        }
+	    }, 100);
+	}
+	
+	function disableCashShopEvents() {
+	    document.addEventListener('click', preventEvent, true);
+	    document.addEventListener('mousedown', preventEvent, true);
+	    document.addEventListener('mouseup', preventEvent, true);
+	    document.addEventListener('focus', preventEvent, true);
+	    document.addEventListener('keydown', preventEvent, true);
+	}
 
+	function enableCashShopEvents() {
+	    document.removeEventListener('click', preventEvent, true);
+	    document.removeEventListener('mousedown', preventEvent, true);
+	    document.removeEventListener('mouseup', preventEvent, true);
+	    document.removeEventListener('focus', preventEvent, true);
+	    document.removeEventListener('keydown', preventEvent, true);
+	}
+
+	function preventEvent(event) {
+	    if (newWindow && !newWindow.closed) {
+	        event.stopPropagation();
+	        event.preventDefault();
+	    }
+	}
+
+	
 	function closeWindow() {
 	    window.close();
 	}

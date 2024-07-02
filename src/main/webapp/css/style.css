@@ -134,8 +134,8 @@
 
 .index_user_box {
 	position: absolute;
-	bottom: 10%;
-	top: 20%;
+	height: 600px;
+    top: 150px;
 	right: 0px;
 	width: 30%;
 	background-color: #272525;
@@ -274,6 +274,37 @@
 
 .login_find button:hover {
 	color: white;
+}
+
+.footer {
+	background-color: #222426;
+}
+
+.footer_link {
+	position: relative;
+    padding: 10px 0;
+    color: #959595;
+	font-size: 18px;
+	border-top: 1px solid #313131;
+	border-bottom: 1px solid #313131;
+
+}
+	
+.footer_link a{
+    color: #959595;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.footer_text {
+	padding: 10px 0;
+	padding-bottom: 200px;
+}
+
+.footer_text p{
+	margin-top: 20px;
+	color: #959595;
+	font-size: 15px;
 }
 
 /*회원가입 페이지*/
@@ -503,6 +534,7 @@
 	justify-content: center;
 	background-color: #efefef;
 	padding-top: 100px;
+	padding-bottom: 94px;
 	text-align: center;
 }
 
@@ -1053,6 +1085,3 @@ dt {
     border-radius: 2px;
     cursor: pointer;
 }
-
-
-
