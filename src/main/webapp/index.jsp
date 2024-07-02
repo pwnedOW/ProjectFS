@@ -182,7 +182,6 @@
 						int user_no = usersDAO.getUser_noByEmail(email);
                         Time_logDAO time_logDAO = new Time_logDAO();
                         String last_login = time_logDAO.getLast_login(user_no);
-                        
                         if(last_login == null) {
                         	%>
                         	<button>접속기록없음</button>
@@ -190,12 +189,14 @@
                         } else {
 						%>
 						<button><%=last_login%></button>
+						<%
+                        }
+						%>
 					</div>
 
 					<%
-                       	 }
-						}
 					}
+								}
 					%>
 
 				</div>
@@ -211,7 +212,7 @@
 					<p>
 						(주)플레임소울/대표이사 김땡땡/사업자등록번호 102-33-3762/통신판매업신고 제 2013-충남천안-2672 호 <a>사업자정보확인</a>
 					</p>
-					<p>충청남도 천안시 동남구 대흥로 대흥로 215 7층,8층 휴먼교육센터/대표번호 041-561-1122/이메일
+					<p>충청남도 천안시 동남구 대흥로 대흥로 215 7층,8층 휴먼교육센터<br>대표번호 041-561-1122<br>이메일
 						sdfwe@naver.com</p>
 				</div>
 			</div>
