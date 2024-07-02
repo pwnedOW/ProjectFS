@@ -30,7 +30,7 @@ public class Cash_logDAO {
 			psmt = conn.prepareStatement(query);
 			psmt.setInt(1, user_no);
 
-			rs = psmt.executeQuery(); // 쿼리 DB전달 실행
+			rs = psmt.executeQuery();
 
 			while (rs.next()) { 
 
@@ -53,19 +53,17 @@ public class Cash_logDAO {
 			}
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBConnectionManager.disconnectDB(conn, psmt, rs);
 		}
 
-		return cash_logList;	//객체 or null
+		return cash_logList;
 	}
 
 	public List<Cash_logDTO> chargeCashByUser_no( int user_no, int amount) {
 
 		List<Cash_logDTO> cash_logList = null;
-		int result = 0;
 
 		try {
 			conn = DBConnectionManager.connectDB();
@@ -73,7 +71,7 @@ public class Cash_logDAO {
 			String query = "INSERT INTO cash_log (user_no, log_no, chrg_cash, use_cash, balance, chrg_cash_time,"
 					+ "                      item_purchase_time, item_no, item_count) "
 					+ "VALUES (?, cash_log_seq.nextval, ?, null, "
-					+ "        (SELECT NVL(MAX(balance) + ? , 0)"
+					+ "        (SELECT NVL(MAX(balance), 0) + ?"
 					+ "    FROM cash_log"
 					+ "    WHERE user_no = ?"
 					+ "        AND log_no = ("
@@ -88,11 +86,10 @@ public class Cash_logDAO {
 			psmt.setInt(4, user_no);
 			psmt.setInt(5, user_no);
 
-			result = psmt.executeUpdate(); // 쿼리 DB전달 실행
+			psmt.executeUpdate();
 
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBConnectionManager.disconnectDB(conn, psmt, rs);

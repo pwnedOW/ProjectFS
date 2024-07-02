@@ -1,3 +1,4 @@
+<%@ page import="db.dao.Time_logDAO"%>
 <%@ page import="db.dao.UsersDAO"%>
 <%@ page import="db.dto.UsersDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -60,16 +61,19 @@
 			
 			
 			if (result > 0) {
+				Time_logDAO time_logDAO = new Time_logDAO();
+				int user_no = usersDAO.getUser_noByEmail(email);
+				time_logDAO.newUser(user_no);
 			    %>
 				<script>
-			        alert('저장 성공');
+			        alert('회원가입이 완료되었습니다.');
 			        location.href = 'index.jsp';
 			    </script>
 				<%
 			} else {
 			    %>
 				<script>
-			        alert('저장 실패');
+			        alert('이미 존재하는 이메일 또는 이미 가입된 전화번호입니다.');
 			        history.back();
 			    </script>
 				<%

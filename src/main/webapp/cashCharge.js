@@ -39,7 +39,7 @@ function openCashChargeWindow(options = {}) {
         top: undefined,
         resizable: 'yes',
         scrollbars: 'yes'
-    };
+    }
 
     const settings = { ...defaultOptions, ...options };
 

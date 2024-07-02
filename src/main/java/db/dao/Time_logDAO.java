@@ -29,16 +29,15 @@ public class Time_logDAO {
 			psmt = conn.prepareStatement(query);
 			psmt.setInt(1, user_no);
 
-			psmt.executeUpdate(); // 쿼리 DB전달 실행
+			psmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			DBConnectionManager.disconnectDB(conn, psmt, rs);
 		}
 
-		return time_log;	//객체 or null
+		return time_log;
 	}
 	
 
@@ -113,6 +112,37 @@ public class Time_logDAO {
 			e.printStackTrace();
 		} finally {
 			DBConnectionManager.disconnectDB(conn, psmt, rs);	//conn psmt rs
+		}
+
+		return last_login;
+
+	}
+	
+	public String newUser(int user_no) {
+
+		String last_login = null;
+
+		try {
+			conn = DBConnectionManager.connectDB();
+
+			String query = "INSERT INTO time_log VALUES(?, null)";
+
+			psmt = conn.prepareStatement(query);
+			psmt.setInt(1, user_no);
+
+			rs = psmt.executeQuery();
+			
+			 if (rs.next()) {
+				 
+	            	String rsLast_login = rs.getString("last_login");
+	            	
+	            	last_login = rsLast_login;
+	            }
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBConnectionManager.disconnectDB(conn, psmt, rs);
 		}
 
 		return last_login;

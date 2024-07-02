@@ -182,11 +182,17 @@
                         Time_logDAO time_logDAO = new Time_logDAO();
                         String last_login = time_logDAO.getLast_login(user_no);
                         
+                        if(last_login == null) {
+                        	%>
+                        	<button>접속기록없음</button>
+                        	<%
+                        } else {
 						%>
 						<button><%=last_login%></button>
 					</div>
 
 					<%
+                       	 }
 						}
 					}
 					%>

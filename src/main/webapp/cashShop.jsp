@@ -193,6 +193,7 @@
 
 	<script src="cashShop.js"></script>
 
+
 	<%
 	if (session.getAttribute("loginEmail") == null) {
 	%>
