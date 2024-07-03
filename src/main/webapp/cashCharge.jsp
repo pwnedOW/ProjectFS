@@ -13,43 +13,34 @@
 </head>
 <body>
     <%
-    // DAO 객체 초기화
     OverallDAO overallDAO = new OverallDAO();
     Cash_logDAO cash_logDAO = new Cash_logDAO();
     Cash_itemDAO cash_itemDAO = new Cash_itemDAO();
     UsersDAO usersDAO = new UsersDAO();
 
-    // 세션에서 이메일 가져오기
     String email = (String) session.getAttribute("loginEmail");
     
     if (email == null) {
-        // 이메일이 없으면 로그인 페이지로 리디렉션
         response.sendRedirect("login.jsp");
         return;
     }
 
-    // 유저 번호 가져오기
     int user_no = usersDAO.getUser_noByEmail(email);
     int balance = overallDAO.getBalanceByUser_no(user_no);
     int chargeAmount = 0;
 
-    // 요청 매개변수에서 충전 금액 가져오기
     String amountParam = request.getParameter("amount");
     if (amountParam != null) {
-        try {
-            chargeAmount = Integer.parseInt(amountParam);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
+    	chargeAmount = Integer.parseInt(amountParam);
     }
     int afterChargeCash = balance + chargeAmount;
 
-    // 디버그 정보 출력
     System.out.println("유저번호 : " + user_no);
     System.out.println("유저잔액 : " + balance);
     System.out.println("충전금액 : " + chargeAmount);
     System.out.println("충전 후 잔액 : " + afterChargeCash);
     %>
+    
     <div class="cashCharge_container">
         <div class="cashCharge_container_left">
             <div>
@@ -80,20 +71,17 @@
         </div>
 
         <script>
-            // 폼 검증 및 제출
             const cashChargeForm = document.querySelector('#cashChargeForm');
 
             cashChargeForm.addEventListener('submit', (e) => {
                 const amountSelect = document.querySelector('#amountSelect');
 
-                // 금액이 선택되지 않은 경우
                 if (amountSelect.value == "금액을 선택해주세요.") {
                     alert('금액을 선택해주세요.');
                     amountSelect.focus();
                     e.preventDefault();
                     return false;
                 } else {
-                    // 폼 제출
                     cashChargeForm.submit();
                 }
             });

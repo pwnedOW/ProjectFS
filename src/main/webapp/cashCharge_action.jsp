@@ -30,6 +30,8 @@
 	<script>
 		alert('충전이 완료되었습니다.');
 		window.close();
+		
+		opener.location.reload();
 	</script>
 </body>
 </html>

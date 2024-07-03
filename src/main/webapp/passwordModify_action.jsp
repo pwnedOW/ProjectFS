@@ -9,13 +9,10 @@
 </head>
 <body>
 	<%
+		String loginEmail = session.getAttribute("loginEmail").toString();
 		String loginPassword = request.getParameter("loginPassword");
-		String password = request.getParameter("modifyingPassword");
-		String passwordCheck = request.getParameter("modifyingPasswordCheck");
-
-		session.setAttribute("modifyingPassword", password);
-		session.setAttribute("modifyingPasswordCheck", passwordCheck);
-		session.setAttribute("loginPassword", loginPassword);
+		String modifyingPassword = request.getParameter("modifyingPassword");
+		String modifyingPasswordCheck = request.getParameter("modifyingPasswordCheck");
 
 		if (session.getAttribute("loginPassword") != null) {
 			loginPassword = session.getAttribute("loginPassword").toString();
@@ -23,25 +20,34 @@
 
 		UsersDAO usersDAO = new UsersDAO();
 
-		boolean checkPasswordResult = usersDAO.checkPassword(loginPassword);
+		boolean checkPassword = usersDAO.checkPassword(loginPassword);
 
+		System.out.println("로그인한 이메일 : " + loginEmail);
+		System.out.println("로그인한 비밀번호 : " + loginPassword);
+		System.out.println("변경할 비밀번호 : " + modifyingPassword);
+		System.out.println("비밀번호 확인 : " + modifyingPasswordCheck);
 		
-
-		System.out.println("현재 비밀번호 : " + loginPassword);
-		System.out.println("변경할 비밀번호 : " + password);
-		System.out.println("비밀번호 확인 : " + passwordCheck);
-
-		
-		if (checkPasswordResult && password.equals(passwordCheck)) {
-			usersDAO.modifyPassword(password, loginPassword);
+		if (checkPassword && modifyingPassword.equals(modifyingPasswordCheck)) {
+			
+			int modifyPassword = usersDAO.modifyPassword(modifyingPassword, loginEmail, loginPassword);
+			
+			if(modifyPassword > 0){
 	%>
-			<script>
-				alert('정상적으로 수정되었습니다. 다시 로그인해주세요');
-				location.href = "logout_action.jsp";
-			</script>
+				<script>
+					alert('정상적으로 수정되었습니다. 다시 로그인해주세요');
+					location.href = "logout_action.jsp";
+				</script>
 	<%
-		} else {
+			} else {
 	%>
+				<script>
+					alert('수정할 수 없습니다.');
+					history.back();
+				</script>
+	<%
+			}
+		} else {
+	%>		
 			<script>
 				alert('수정할 수 없습니다.');
 				history.back();
@@ -49,5 +55,6 @@
 	<%
 		}
 	%>
+
 </body>
 </html>

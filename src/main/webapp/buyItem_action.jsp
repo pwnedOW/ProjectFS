@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
+	<%
 	OverallDAO overallDAO = new OverallDAO();
 	Cash_logDAO cash_logDAO = new Cash_logDAO();
 	Cash_itemDAO cash_itemDAO = new Cash_itemDAO();

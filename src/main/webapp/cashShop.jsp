@@ -1,9 +1,7 @@
 <%@ page import="java.util.List"%>
 
 <%@ page import="db.dto.Cash_itemDTO"%>
-
 <%@ page import="db.dao.OverallDAO"%>
-<%@ page import="db.dao.Cash_logDAO"%>
 <%@ page import="db.dao.Cash_itemDAO"%>
 <%@ page import="db.dao.UsersDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>플레임소울 온라인</title>
 <link rel="stylesheet" href="./css/style.css">
 <script src="buyItem.js"></script>
 <script src="cashCharge.js"></script>
@@ -21,18 +19,18 @@
 
 	<%
 	OverallDAO overallDAO = new OverallDAO();
-	Cash_logDAO cash_logDAO = new Cash_logDAO();
 	UsersDAO usersDAO = new UsersDAO();
 	Cash_itemDAO cash_itemDAO = new Cash_itemDAO();
+	
 	List<Cash_itemDTO> equipment_itemList = cash_itemDAO.getEquipment_itemList();
 	List<Cash_itemDTO> consumption_itemList = cash_itemDAO.getConsumption_itemList();
 	List<Cash_itemDTO> probability_itemList = cash_itemDAO.getProbability_itemList();
 	List<Cash_itemDTO> pet_itemList = cash_itemDAO.getPet_itemList();
 	
-	String email = (String) session.getAttribute("loginEmail");
+	String loginEmail = (String)session.getAttribute("loginEmail");
 	
 	
-	int user_no = usersDAO.getUser_noByEmail(email);
+	int user_no = usersDAO.getUser_noByEmail(loginEmail);
 	int balance = overallDAO.getBalanceByUser_no(user_no);
 
 	%>
@@ -62,8 +60,6 @@
 				</script>
 			</div>
 
-
-
 		</div>
 
 		<div class="cash_nav_top">
@@ -79,15 +75,16 @@
 			</script>
 			<%
 			} else {
-			//Object 객체 타입 -> String 
-			String loginId = session.getAttribute("loginEmail").toString();
 			%>
 			<div class="user_cash_info">
 
 				<div class="cash_info_left">
-					<p><%=email%></p>
+					<p><%=loginEmail%></p>
 					<p>
-						보유 캐시 : <%=balance %> 원</p>
+						보유 캐시 :
+						<%=balance %>
+						원
+					</p>
 				</div>
 
 				<div class="cash_info_left">
@@ -98,6 +95,7 @@
 						}
 					</script>
 				</div>
+
 			</div>
 			<%
 			}
@@ -107,85 +105,81 @@
 		<div class="tabs">
 			<button class="tablink" onclick="openTab(event, 'equipment_item')">장비 아이템</button>
 			<button class="tablink" onclick="openTab(event, 'consumption_item')">소비 아이템</button>
-			<button class="tablink" onclick="openTab(event, 'pobability_item')">확률형 아이템</button>
+			<button class="tablink" onclick="openTab(event, 'probability_item')">확률형 아이템</button>
 			<button class="tablink" onclick="openTab(event, 'pet_item')">펫 아이템</button>
 		</div>
 
-	<div id="equipment_item" class="tabcontent">
-        <div class="cash_container">
-				<% 
+		<div id="equipment_item" class="tabcontent">
+			<div class="cash_container">
+		<% 
         for(Cash_itemDTO equipment_item : equipment_itemList){
         %>
-            <div class="item">
+				<div class="item">
 					<img src="img/e<%=equipment_item.getItem_no()%>.png"
 						alt="equipment_item <%=equipment_item.getItem_no() %>">
-					<p><%=equipment_item.getItem_name() %></p>
-					<br> <span class="price"><%=equipment_item.getItem_price()%></span><br>
-
-                <button onclick="openPurchaseWindow(event)">구매하기</button>
-            </div>
-				<% 
+					<p><%=equipment_item.getItem_name() %></p><br> 
+					<span class="price"><%=equipment_item.getItem_price()%></span><br>
+					<button onclick="openPurchaseWindow(event)">구매하기</button>
+				</div>
+		<% 
         }
         %>
-        </div>
-    </div>
+			</div>
+		</div>
 		<div id="consumption_item" class="tabcontent" style="display: none">
-        <div class="cash_container">
+			<div class="cash_container">
 		<% 
         for(Cash_itemDTO consumption_item : consumption_itemList){
         %>
-            <div class="item">
+				<div class="item">
 					<img src="img/temp<%=consumption_item.getItem_no()%>.png"
 						alt="consumption_item <%=consumption_item.getItem_no() %>">
-					<p><%=consumption_item.getItem_name() %></p>
-					<br> <span class="price"><%=consumption_item.getItem_price()%></span><br>
-
-                <button onclick="openPurchaseWindow(event)">구매하기</button>
-            </div>
+					<p><%=consumption_item.getItem_name() %></p><br> 
+					<span class="price"><%=consumption_item.getItem_price()%></span><br>
+					<button onclick="openPurchaseWindow(event)">구매하기</button>
+				</div>
 		<% 
         }
         %>
-        </div>
-    </div>
+			</div>
+		</div>
 
 		<div id="probability_item" class="tabcontent" style="display: none">
-        <div class="cash_container">
+			<div class="cash_container">
 				<% 
 		        for(Cash_itemDTO probability_item : probability_itemList){
 		        %>
-            <div class="item">
-							<img src="img/p<%=probability_item.getItem_no()%>.png"
-								alt="probability_item <%=probability_item.getItem_no() %>">
-							<p><%=probability_item.getItem_name() %></p>
-							<br> <span class="price"><%=probability_item.getItem_price()%></span><br>
-		
-                <button onclick="openPurchaseWindow(event)">구매하기</button>
-            </div>
+				<div class="item">
+					<img src="img/p<%=probability_item.getItem_no()%>.png"
+						alt="probability_item <%=probability_item.getItem_no() %>">
+					<p><%=probability_item.getItem_name() %></p><br> 
+					<span class="price"><%=probability_item.getItem_price()%></span><br>
+					<button onclick="openPurchaseWindow(event)">구매하기</button>
+				</div>
 				<% 
 		        }
 		        %>
-        </div>
-    </div>
-    
+			</div>
+		</div>
+
 		<div id="pet_item" class="tabcontent" style="display: none">
-        <div class="cash_container">
+			<div class="cash_container">
 				<% 
 		        for(Cash_itemDTO pet_item : pet_itemList){
 		        %>
-                <div class="item">
-							<img src="img/pet<%=pet_item.getItem_no()%>.png"
-								alt="pet_item <%=pet_item.getItem_no() %>">
-							<p><%=pet_item.getItem_name() %></p>
-							<br> <span class="price"><%=pet_item.getItem_price()%></span><br>
-		
-	                <button onclick="openPurchaseWindow(event)">구매하기</button>
-	            </div>
+				<div class="item">
+					<img src="img/pet<%=pet_item.getItem_no()%>.png"
+						alt="pet_item <%=pet_item.getItem_no() %>">
+					<p><%=pet_item.getItem_name() %></p><br> 
+					<span class="price"><%=pet_item.getItem_price()%></span><br>
+					<button onclick="openPurchaseWindow(event)">구매하기</button>
+				</div>
 				<% 
 		        }
 		        %>
-            </div>
-        </div>
-    </div>
+			</div>
+		</div>
+	</div>
 
 
 	<script src="buy_item.js"></script>
@@ -195,7 +189,7 @@
 
 
 	<%
-	if (session.getAttribute("loginEmail") == null) {
+	if (loginEmail == null) {
 	%>
 	<script>
 		function openPurchaseWindow() {

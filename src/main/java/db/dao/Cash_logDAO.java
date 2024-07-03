@@ -68,13 +68,13 @@ public class Cash_logDAO {
 		try {
 			conn = DBConnectionManager.connectDB();
 
-			String query = "INSERT INTO cash_log (user_no, log_no, chrg_cash, use_cash, balance, chrg_cash_time,"
-					+ "                      item_purchase_time, item_no, item_count) "
-					+ "VALUES (?, cash_log_seq.nextval, ?, null, "
+			String query = "INSERT INTO cash_log (user_no, log_no, chrg_cash, use_cash, balance, "
+					+ "                     chrg_cash_time, item_purchase_time, item_no, item_count) "
+					+ "		VALUES (?, cash_log_seq.nextval, ?, null, "
 					+ "        (SELECT NVL(MAX(balance), 0) + ?"
-					+ "    FROM cash_log"
-					+ "    WHERE user_no = ?"
-					+ "        AND log_no = ("
+					+ "   	FROM cash_log"
+					+ "    	WHERE user_no = ?"
+					+ "     AND log_no = ("
 					+ "                    SELECT MAX(log_no) FROM cash_log"
 					+ "                    WHERE user_no = ?)), "
 					+ "        SYSDATE, null, null, null)";
@@ -101,18 +101,17 @@ public class Cash_logDAO {
 	public List<Cash_logDTO> buyItem(int user_no, int item_price, int item_no) {
 
 		List<Cash_logDTO> cash_logList = null;
-		int result = 0;
 
 		try {
 			conn = DBConnectionManager.connectDB();
 
-			String query = "INSERT INTO cash_log (user_no, log_no, chrg_cash, use_cash, balance, chrg_cash_time,"
-					+ "                      item_purchase_time, item_no, item_count) "
-					+ "VALUES (?, cash_log_seq.nextval, null, ?, "
+			String query = "INSERT INTO cash_log (user_no, log_no, chrg_cash, use_cash, balance, "
+					+ "                    chrg_cash_time, item_purchase_time, item_no, item_count) "
+					+ "		VALUES (?, cash_log_seq.nextval, null, ?, "
 					+ "        (SELECT NVL(MAX(balance) - ? , 0)"
-					+ "    FROM cash_log"
-					+ "    WHERE user_no = ?"
-					+ "        AND log_no = ("
+					+ "     FROM cash_log"
+					+ "     WHERE user_no = ?"
+					+ "     AND log_no = ("
 					+ "                    SELECT MAX(log_no) FROM cash_log"
 					+ "                    WHERE user_no = ?)), "
 					+ "        null, SYSDATE, ?, 1)";
@@ -125,14 +124,13 @@ public class Cash_logDAO {
 			psmt.setInt(5, user_no);
 			psmt.setInt(6, item_no);
 
-			result = psmt.executeUpdate();
+			psmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DBConnectionManager.disconnectDB(conn, psmt, rs);
 		}
-
 		return cash_logList;
 	}
 }

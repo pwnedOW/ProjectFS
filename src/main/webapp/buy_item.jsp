@@ -20,7 +20,8 @@
 				<p><%=request.getParameter("itemInfo")%></p>
 				<p><%=request.getParameter("itemPrice")%></p>
 			</div>
-			<form action="buyItem_action.jsp?itemInfo=<%=request.getParameter("itemInfo")%>&itemPrice=<%=request.getParameter("itemPrice")%>" method="post" id="form_purchase">
+			<form action="buyItem_action.jsp?itemInfo=<%=request.getParameter("itemInfo")%>
+				&itemPrice=<%=request.getParameter("itemPrice")%>" method="post" id="form_purchase">
 				<input type="checkbox" id="chk_box">위 상품의 구매에 동의하시면 체크박스를 클릭해주세요.<br>
 				<button type="submit">구매하기</button>
 				<button type="button" onclick="closeWindow()">닫기</button>

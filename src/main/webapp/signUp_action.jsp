@@ -11,7 +11,7 @@
 </head>
 <body>
 	<%
-		request.setCharacterEncoding("UTF-8");  //문자인코딩 설정  한글깨짐 방지
+		request.setCharacterEncoding("UTF-8"); 
 		System.out.println(request.getParameter("email"));
 		System.out.println(request.getParameter("password"));
 		System.out.println(request.getParameter("name"));
@@ -26,10 +26,6 @@
 		
 		UsersDAO usersDAO = new UsersDAO();
 	
-		
-		//DTO객체로 감싸서 저장
-		//DeptDTO dept = new DeptDTO();
-		//deptDAO.saveTestDept(dept);
 		if (password.length() > 30) {
     // 비밀번호 길이가 30자 초과일 경우
 		    %>

@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>플레임소울 온라인</title>
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>

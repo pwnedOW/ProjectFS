@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>플레임소울 온라인</title>
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -34,7 +34,7 @@
 		const form_signUp = document.querySelector('#form_signUp');
 		
 		form_signUp.addEventListener('submit', (e)=>{
-			e.preventDefault(); //기본 이벤트 중지  submit 폼 전송 막기!
+			e.preventDefault();
 			
 			let input_email = document.querySelector('#input_email');
 			let input_password = document.querySelector('#input_password');
@@ -97,8 +97,7 @@
 				    alert('정확한 생년월일 6자리를 입력해주세요');
 				    return;
 				}
-			//js 코드로 생년월일 포맷에 맞지 않으면 다시 입력~~
-			//알맞은 생년월일을 입력해주세요. 정규식(Regular Expression)
+		
 			
 			
 			if(input_tel.value.trim() == '' || input_tel.value.trim() == null ){
@@ -116,8 +115,6 @@
 			    return;
 			}
 			
-			//검증 모두 통과
-			//저장하는 단계 진행!
 			form_signUp.submit();
 
 		});

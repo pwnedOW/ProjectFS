@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>플레임소울 온라인</title>
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -28,7 +28,7 @@
 
 			<div class="modify_nav_right">
 				<%
-				if (session.getAttribute("loginEmail") == null) {
+				if (loginEmail == null) {
 				%>
 				<button onclick="signUp()">회원가입</button>
 				<script>
@@ -149,7 +149,7 @@
 			        		const form_withdrawal = document.querySelector('#form_withdrawal');
 			
 			        		form_withdrawal.addEventListener('submit', (e)=>{
-			            		e.preventDefault(); // 기본 이벤트 중지: submit 폼 전송 막기!
+			            		e.preventDefault(); 
 			
 			            	let chk_box = document.querySelector('#chk_box');
 			

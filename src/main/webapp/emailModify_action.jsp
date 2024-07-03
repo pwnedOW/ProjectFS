@@ -9,11 +9,9 @@
 </head>
 <body>
 	<%
-		request.setCharacterEncoding("UTF-8");  //문자인코딩 설정  한글깨짐 방지
+		request.setCharacterEncoding("UTF-8"); 
 		
-		String email = request.getParameter("modifyingEmail");
-		
-		session.setAttribute("modifyingEmail", email);
+		String modifyingEmail = request.getParameter("modifyingEmail");
 		
 		String loginEmail = null;
 				
@@ -23,24 +21,23 @@
 		
 		UsersDAO usersDAO = new UsersDAO();
 		
-		int result = usersDAO.modifyEmail(email ,loginEmail);
+		int result = usersDAO.modifyEmail(modifyingEmail ,loginEmail);
 		
 		if(result > 0){
 			
-		%>
+	%>
 			<script>
 				alert('정상적으로 수정되었습니다. 다시 로그인해주세요');
 				location.href="logout_action.jsp";
 			</script>
-		<%
-			 
+	<%
 		} else {
-			%>
+	%>
 			<script>
 				alert('수정할 수 없습니다.');
 				history.back();
 			</script>
-			<%
+	<%
 		}
 	%>
 </body>

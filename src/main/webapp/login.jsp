@@ -4,9 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
-<link rel="stylesheet" href="./css/style.css">
-<title>Login</title>
+<title>플레임소울 온라인</title>
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>

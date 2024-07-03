@@ -211,22 +211,24 @@ public class UsersDAO {
 		return 0;
 	}
 	
-	public int modifyPassword(String password, String password2) {
-
+	public int modifyPassword(String modifyingPassword, String loginEmail, String loginPassword) {
+		
+		int result = 0;
+		
 		try {
 			conn = DBConnectionManager.connectDB();
 			
 			String query = " UPDATE users " +
 							" SET password = ? " +
-							" WHERE password = ? ";
+							" WHERE email = ? AND password = ? ";
 			
 			psmt = conn.prepareStatement(query);
 			
-			psmt.setString(1, password);	//수정 후 비밀번호
-			psmt.setString(2, password2);	//기존 비밀번호
+			psmt.setString(1, modifyingPassword);	//수정할 비밀번호
+			psmt.setString(2, loginEmail);		//로그인 정보에 저장된 이메일
+			psmt.setString(3, loginPassword);	//로그인 정보에 저장된 비밀번호
 
-			int result = psmt.executeUpdate();
-			return result;
+			result = psmt.executeUpdate();
 
 		}  catch (SQLException e) {
 			e.printStackTrace();
@@ -234,7 +236,7 @@ public class UsersDAO {
 			DBConnectionManager.disconnectDB(conn, psmt, rs);
 		}
 		
-		return 0;
+		return result;
 	}
 	
 	public boolean checkPassword(String password) {
@@ -245,7 +247,7 @@ public class UsersDAO {
 			psmt = conn.prepareStatement(query);
 			psmt.setString(1, password);
 
-			rs = psmt.executeQuery(); // 쿼리 DB전달 실행
+			rs = psmt.executeQuery();
 
 			if(rs.next()) {
 				return true;
