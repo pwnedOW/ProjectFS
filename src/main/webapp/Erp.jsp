@@ -140,7 +140,7 @@
 							<td><%=rs.getInt("money")%></td>
 							<td><%=rs.getTimestamp("last_login")%></td>
 							<td><a
-								href="<%=request.getContextPath()%>/mupdate/m_update_form.jsp?send_id=<%=rs.getString("user_no")%>">수정</a></td>
+								href="<%=request.getContextPath()%>m_update_form.jsp?send_id=<%=rs.getString("user_no")%>">수정</a></td>
 							<td><a
 								href="<%=request.getContextPath()%>/mdelete/m_delete_pro.jsp?send_id=<%=rs.getString("user_no")%>">삭제</a></td>
 						</tr>

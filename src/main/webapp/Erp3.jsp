@@ -1,19 +1,8 @@
-<%@ page import="java.sql.DriverManager"%>
-<%@ page import="java.sql.Connection"%>
-<%@ page import="java.sql.PreparedStatement"%>
-<%@ page import="java.sql.ResultSet"%>
-<%@ page import="java.sql.SQLException"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="db.dto.Cash_logDTO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="db.dao.Cash_logDAO"%>
-<%@page import="db.dao.UsersDAO"%>
-<%@page import="db.dto.UsersDTO"%>
-<%@page import="db.dao.Ingame_moneyDAO"%>
-<%@page import="db.dto.Ingame_moneyDTO"%>
-<%@page import="db.dao.Time_logDAO"%>
-<%@page import="db.dto.Time_logDTO"%>
+<%@ page import = "java.sql.DriverManager"%>
+<%@ page import = "java.sql.Connection"%>
+<%@ page import = "java.sql.PreparedStatement"%>
+<%@ page import = "java.sql.ResultSet"%>
+<%@ page import = "java.sql.SQLException"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
