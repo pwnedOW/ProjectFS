@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.header {
+    background-color: #4b5e6b;
+    color: #fff;
+    text-align: left;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+.header-title {
+    font-size: 24px;
+    margin: 0;
+    flex: 1;
+}
+
+.header-close-btn {
+    background-color: #ff5c5c;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.header-close-btn:hover {
+    background-color: #ff1c1c;
+}
+
+.erpList {
+    background-color: #A9A9A9;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.main {
+    padding: 1rem;
+}
+
+.main-title {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.container1 {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.user-controls {
+    text-align: right;
+    margin-bottom: 25px;
+}
+
+.list {
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+}
+
+.user-controls-button {
+    background-color: #4b5e6b;
+    color: #fff;
+    border: double;
+    transition: background-color 0.3s ease;
+    width: 89px;
+    font-size: 17px;
+    height: 38px;
+}
+
+.user-controls-button:hover {
+    background-color: #f3f3f3;
+    color: black;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px;
+}
+
+.button-group-button {
+    background-color: #4b5e6b;
+    color: #fff;
+    border: double;
+    padding: 10px 10px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.button-group-button:hover {
+    background-color: #f3f3f3;
+    color: black;
+}
+
+.table-container {
+    flex-grow: 1;
+    width:100%
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+.user-table th, .user-table td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.user-table th {
+    background-color: #f2f2f2;
+    font-size: 14px;
+    padding: 2px
+}
+
+.user-table tbody {
+    height: 20px;
+    overflow-y: auto;
+}
+
+.user-table tbody tr:hover {
+    background-color: #d1e7fd;
+}
