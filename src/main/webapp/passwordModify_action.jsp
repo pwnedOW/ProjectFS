@@ -14,13 +14,9 @@
 		String modifyingPassword = request.getParameter("modifyingPassword");
 		String modifyingPasswordCheck = request.getParameter("modifyingPasswordCheck");
 
-		if (session.getAttribute("loginPassword") != null) {
-			loginPassword = session.getAttribute("loginPassword").toString();
-		}
-
 		UsersDAO usersDAO = new UsersDAO();
 
-		boolean checkPassword = usersDAO.checkPassword(loginPassword);
+		boolean checkPassword = usersDAO.checkPassword(loginEmail ,loginPassword);
 
 		System.out.println("로그인한 이메일 : " + loginEmail);
 		System.out.println("로그인한 비밀번호 : " + loginPassword);

@@ -239,13 +239,14 @@ public class UsersDAO {
 		return result;
 	}
 	
-	public boolean checkPassword(String password) {
+	public boolean checkPassword(String loginEmail, String loginPassword) {
 		try {
 			conn = DBConnectionManager.connectDB();
 
-			String query = "SELECT * FROM users WHERE password =?";
+			String query = "SELECT * FROM users WHERE email = ? AND password = ?";
 			psmt = conn.prepareStatement(query);
-			psmt.setString(1, password);
+			psmt.setString(1, loginEmail);
+			psmt.setString(2, loginPassword);
 
 			rs = psmt.executeQuery();
 
