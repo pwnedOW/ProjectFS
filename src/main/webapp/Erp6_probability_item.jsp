@@ -23,17 +23,13 @@
 	<main class="main">
 		<h2 class="main-title">사용자 관리</h2>
 		<div class="user-controls">
-			<form action="<%=request.getContextPath()%>Erp3.jsp" method="post">
+			<form action="<%=request.getContextPath()%>Erp6_probability_item.jsp" method="post">
 				<select name="sk">
-					<option value="user_no">유저(고유번호)</option>
-					<option value="log_no">로그넘버</option>
-					<option value="chrg_cash">충전캐쉬</option>
-					<option value="use_cash">사용캐쉬</option>
-					<option value="balance">남은캐쉬</option>
-					<option value="chrg_cash_time">캐쉬충전시간</option>
-					<option value="item_purchase_time">아이템구매시간</option>
 					<option value="item_no">아이템(고유번호)</option>
-					<option value="item_count">아이템갯수</option>
+					<option value="item_name">아이템 이름</option>
+					<option value="item_price">아이템 가격</option>
+					<option value="item_sort_no">아이템 분류번호</option>
+
 					<input type="text" class="list" id="searchInput" name="sv">
 					<input type="submit" value="확인" class="user-controls-button">
 				</select>
@@ -63,27 +59,22 @@
                 <form action="<%=request.getContextPath()%>Erp7_pet_item.jsp" method="post">
                     <input class="button-group-button" type="submit" value="펫 아이템 정보">
                 </form>
-
 			</div>
 			<div class="table-container">
+			
 				<table class="user-table">
 					<thead>
+					
 						<tr>
-							<th>로그넘버</th>
 							<th>번호</th>
-							<th>충전캐쉬</th>
-							<th>사용캐쉬</th>
-							<th>남은캐쉬</th>
-							<th>캐쉬충전시간</th>
-							<th>아이템구매시간</th>
-							<th>아이템번호</th>
-							<th>아이템갯수</th>
+							<th>아이템 이름</th>
+							<th>아이템 가격</th>
+							<th>아이템 분류번호</th>
 							<th>수정</th>
 							<th>삭제</th>
 						</tr>
 					</thead>
 					<tbody id="userTableBody">
-						</div>
 						<%
 						request.setCharacterEncoding("utf-8");
 						Connection conn = null;
@@ -94,8 +85,8 @@
 						Class.forName("oracle.jdbc.driver.OracleDriver");
 						String sk = request.getParameter("sk");
 						String sv = request.getParameter("sv");
-						System.out.println(sk + "<-- sk Erp3.jsp");
-						System.out.println(sv + "<-- sv Erp3.jsp");
+						System.out.println(sk + "<-- sk probability_item.jsp");
+						System.out.println(sv + "<-- sv probability_item.jsp");
 
 						try {
 							String ORCL = "jdbc:oracle:thin:@localhost:1521/orcl";
@@ -103,61 +94,45 @@
 							String dbPass = "tiger";
 							conn = DriverManager.getConnection(ORCL, dbUser, dbPass);
 							if (sk == null & sv == null) {
-
-								pstmt = conn.prepareStatement("select * from cash_log");
+								
+								pstmt = conn.prepareStatement("select * from probability_item");
 							} else if (sk != null & sv.equals("")) {
-
-								pstmt = conn.prepareStatement("select * from cash_log");
+								
+								pstmt = conn.prepareStatement("select * from probability_item");
 							} else if (sk != null & sv != null) {
-
-								if (sk.equals("user_no")) {
-							pstmt = conn.prepareStatement("select *  from cash_log where user_no=?");
-								} else if (sk.equals("log_no")) {
-							pstmt = conn.prepareStatement("select * from cash_log where log_no=?");
-								} else if (sk.equals("chrg_cash")) {
-							pstmt = conn.prepareStatement("select * from cash_log  where chrg_cash=?");
-								} else if (sk.equals("use_cash")) {
-							pstmt = conn.prepareStatement("select * from cash_log  where use_cash=?");
-								} else if (sk.equals("balance")) {
-							pstmt = conn.prepareStatement("select * from cash_log  where balance=?");
-								} else if (sk.equals("chrg_cash_time")) {
-							pstmt = conn.prepareStatement("select * from cash_log  where chrg_cash_time=?");
-								} else if (sk.equals("item_purchase_time")) {
-							pstmt = conn.prepareStatement("select * from cash_log  where item_purchase_time=?");
-								} else if (sk.equals("item_no")) {
-							pstmt = conn.prepareStatement("select * from cash_log  where item_no=?");
-								} else if (sk.equals("item_count")) {
-							pstmt = conn.prepareStatement("select * from cash_log  where item_count=?");
+								
+								if (sk.equals("item_no")) {
+							pstmt = conn.prepareStatement("select * from probability_item where item_no=?");
+								} else if (sk.equals("item_name")) {
+							pstmt = conn.prepareStatement("select * from probability_item where item_name=?");
+								} else if (sk.equals("item_price")) {
+							pstmt = conn.prepareStatement("select * from probability_item  where item_price=?");
+								} else if (sk.equals("item_sales_status")) {
+							pstmt = conn.prepareStatement("select * from probability_item  where item_sales_status=?");
 								}
 								pstmt.setString(1, sv);
 							}
 
 							
 							rs = pstmt.executeQuery();
-							System.out.println(rs + "<-- rs Erp3.jsp");
+							System.out.println(rs + "<-- rs Erp6_probability_item.jsp");
 							while (rs.next()) {
 						%>
 
 						<tr>
-						<td><%=rs.getInt("log_no")%></td>
-							<td><%=rs.getInt("user_no")%></td>
-							
-							<td><%=rs.getInt("chrg_cash")%></td>
-							<td><%=rs.getInt("use_cash")%></td>
-							<td><%=rs.getInt("balance")%></td>
-							<td><%=rs.getTimestamp("chrg_cash_time")%></td>
-							<td><%=rs.getTimestamp("item_purchase_time")%></td>
 							<td><%=rs.getInt("item_no")%></td>
-							<td><%=rs.getInt("item_count")%></td>
+							<td><%=rs.getString("item_name")%></td>
+							<td><%=rs.getString("item_price")%></td>
+							<td><%=rs.getString("item_sort_no")%></td>
 
 
 							<td><a
 								href="<%=request.getContextPath()%>
-                /mupdate/m_update_form.jsp?send_id=<%=rs.getString("user_no")%>">수정</a>
+                /mupdate/m_update_form.jsp?send_id=<%=rs.getString("item_no")%>">수정</a>
 							</td>
 							<td><a
 								href="<%=request.getContextPath()%>
-                /mdelete/m_delete_pro.jsp?send_id=<%=rs.getString("user_no")%>">삭제</a>
+                /mdelete/m_delete_pro.jsp?send_id=<%=rs.getString("item_no")%>">삭제</a>
 							</td>
 
 						</tr>
@@ -203,7 +178,7 @@
 
 					</main>
 
-
+					<footer class="footer"></footer>
 
 					
 					<script src="mainpage.js"></script>

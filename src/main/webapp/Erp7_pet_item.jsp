@@ -18,18 +18,17 @@
 	<header class="header">
 		<div class="header-container">
 			<h1 class="header-title">ERP 시스템</h1>
-			<button class="header-close-btn">x</button>
 		</div>
 	</header>
 	<main class="main">
 		<h2 class="main-title">사용자 관리</h2>
 		<div class="user-controls">
-			<form action="<%=request.getContextPath()%>Erp4.jsp" method="post">
+			<form action="<%=request.getContextPath()%>Erp7_pet_item.jsp" method="post">
 				<select name="sk">
 					<option value="item_no">아이템(고유번호)</option>
 					<option value="item_name">아이템 이름</option>
 					<option value="item_price">아이템 가격</option>
-					<option value="item_sales_status">아이템 판매상태</option>
+					<option value="item_sort_no">아이템 분류번호</option>
 
 					<input type="text" class="list" id="searchInput" name="sv">
 					<input type="submit" value="확인" class="user-controls-button">
@@ -39,26 +38,27 @@
 		</div>
 		<div class="container">
 			<div class="button-group">
-				<form action="<%=request.getContextPath()%>Erp.jsp" method="post">
-					<input class="button-group-button" type="submit" value=" 유저 정보 "
-						action="<%=request.getContextPath()%>Erp.jsp" method="post">
-
-				</form>
-				<form action="<%=request.getContextPath()%>Erp2.jsp" method="post">
-					<input class="button-group-button" type="submit" value=" 캐릭터 정보 "
-						action="<%=request.getContextPath()%>Erp2.jsp" method="post">
-
-				</form>
-				<form action="<%=request.getContextPath()%>Erp3.jsp" method="post">
-					<input class="button-group-button" type="submit" value="캐쉬 정보"
-						action="<%=request.getContextPath()%>Erp3.jsp" method="post">
-
-				</form>
-				<form action="<%=request.getContextPath()%>Erp4.jsp" method="post">
-					<input class="button-group-button" type="submit" value=" 아이템 정보 "
-						action="<%=request.getContextPath()%>Erp4.jsp" method="post">
-
-				</form>
+				<form action="<%= request.getContextPath() %>/Erp.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="유저 정보">
+                </form>
+                <form action="<%= request.getContextPath() %>/Erp2.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="캐릭터 정보">
+                </form>
+                <form action="<%= request.getContextPath() %>/Erp3.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="캐쉬 정보">
+                </form>
+                <form action="<%=request.getContextPath()%>Erp4_equipment_item.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="장비 아이템 정보">
+                </form>
+                <form action="<%=request.getContextPath()%>Erp5_consumption_item.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="소비 아이템 정보">
+                </form>
+                <form action="<%=request.getContextPath()%>Erp6_probability_item.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="확률 아이템 정보">
+                </form>
+                <form action="<%=request.getContextPath()%>Erp7_pet_item.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="펫 아이템 정보">
+                </form>
 			</div>
 			<div class="table-container">
 			
@@ -69,7 +69,7 @@
 							<th>번호</th>
 							<th>아이템 이름</th>
 							<th>아이템 가격</th>
-							<th>아이템 판매상태</th>
+							<th>아이템 분류번호</th>
 							<th>수정</th>
 							<th>삭제</th>
 						</tr>
@@ -85,8 +85,8 @@
 						Class.forName("oracle.jdbc.driver.OracleDriver");
 						String sk = request.getParameter("sk");
 						String sv = request.getParameter("sv");
-						System.out.println(sk + "<-- sk Erp4.jsp");
-						System.out.println(sv + "<-- sv Erp4.jsp");
+						System.out.println(sk + "<-- sk pet_item.jsp");
+						System.out.println(sv + "<-- sv pet_item.jsp");
 
 						try {
 							String ORCL = "jdbc:oracle:thin:@localhost:1521/orcl";
@@ -95,27 +95,27 @@
 							conn = DriverManager.getConnection(ORCL, dbUser, dbPass);
 							if (sk == null & sv == null) {
 								
-								pstmt = conn.prepareStatement("select * from cash_item ");
+								pstmt = conn.prepareStatement("select * from pet_item");
 							} else if (sk != null & sv.equals("")) {
 								
-								pstmt = conn.prepareStatement("select * from cash_item ");
+								pstmt = conn.prepareStatement("select * from pet_item");
 							} else if (sk != null & sv != null) {
 								
 								if (sk.equals("item_no")) {
-							pstmt = conn.prepareStatement("select *  from cash_item where item_no=?");
+							pstmt = conn.prepareStatement("select * from pet_item where item_no=?");
 								} else if (sk.equals("item_name")) {
-							pstmt = conn.prepareStatement("select * from cash_item where item_name=?");
+							pstmt = conn.prepareStatement("select * from pet_item where item_name=?");
 								} else if (sk.equals("item_price")) {
-							pstmt = conn.prepareStatement("select * from cash_item  where item_price=?");
+							pstmt = conn.prepareStatement("select * from pet_item  where item_price=?");
 								} else if (sk.equals("item_sales_status")) {
-							pstmt = conn.prepareStatement("select * from cash_item  where item_sales_status=?");
+							pstmt = conn.prepareStatement("select * from pet_item  where item_sales_status=?");
 								}
 								pstmt.setString(1, sv);
 							}
 
 							
 							rs = pstmt.executeQuery();
-							System.out.println(rs + "<-- rs Erp.jsp");
+							System.out.println(rs + "<-- rs Erp7_pet_item.jsp");
 							while (rs.next()) {
 						%>
 
@@ -123,7 +123,7 @@
 							<td><%=rs.getInt("item_no")%></td>
 							<td><%=rs.getString("item_name")%></td>
 							<td><%=rs.getString("item_price")%></td>
-							<td><%=rs.getString("item_sales_status")%></td>
+							<td><%=rs.getString("item_sort_no")%></td>
 
 
 							<td><a

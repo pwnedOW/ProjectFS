@@ -18,7 +18,7 @@
 		%>
 				<script>
 				alert('관리자 로그인');
-				location.href = "adminPage.jsp";
+				location.href = "Erp.jsp";
 				</script>
 		<%
 		}

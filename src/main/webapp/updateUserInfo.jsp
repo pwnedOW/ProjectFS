@@ -17,42 +17,40 @@
     <main class="main">
         <h2 class="main-title">사용자 정보 업데이트</h2>
         <div class="form-container">
-            <%
+            <%  // Java code begins
             
-            request.setCharacterEncoding("UTF-8"); // 한글 처리 추가
+            request.setCharacterEncoding("UTF-8"); // Setting character encoding
             
-            String user_no = request.getParameter("user_no");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            String name = request.getParameter("name");
-            String birth = request.getParameter("birth");
-            String tel = request.getParameter("tel");
-            String money = request.getParameter("money");
-            String last_login = request.getParameter("last_login");
+            // Retrieving parameters from the request
+            String item_no = request.getParameter("item_no");
+            String item_name = request.getParameter("item_name");
+            String item_price = request.getParameter("item_price");
+            String item_sort_no = request.getParameter("item_sort_no");
             
             Connection conn = null;
             PreparedStatement pstmt = null;
             
             try {
+                // Establishing database connection
                 Class.forName("oracle.jdbc.driver.OracleDriver");
                 String ORCL = "jdbc:oracle:thin:@localhost:1521:orcl?useUnicode=true&characterEncoding=UTF-8";
                 String dbUser = "scott";
                 String dbPass = "tiger";
                 conn = DriverManager.getConnection(ORCL, dbUser, dbPass);
                 
-                // UPDATE 쿼리 작성
-                String sql = "UPDATE users SET email=?, password=?, name=?, birth=?, tel=? WHERE user_no=?";
+                // UPDATE SQL query
+                String sql = "UPDATE equipment_item SET item_no=?, item_name=?, item_price=?, item_sort_no=? WHERE item_no=?";
                 pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, email);
-                pstmt.setString(2, password);
-                pstmt.setString(3, name);
-                pstmt.setDate(4, java.sql.Date.valueOf(birth)); // birth는 String 형식으로 입력되므로 Date로 변환
-                pstmt.setString(5, tel);
-                pstmt.setInt(6, Integer.parseInt(user_no));
+                pstmt.setString(1, item_no);
+                pstmt.setString(2, item_name);
+                pstmt.setString(3, item_price);
+                pstmt.setString(4, item_sort_no);
+                pstmt.setInt(5, Integer.parseInt(item_no)); // Setting WHERE condition
                 
-                // 쿼리 실행
+                // Executing the query
                 int rowsUpdated = pstmt.executeUpdate();
                 
+                // Checking if update was successful
                 if (rowsUpdated > 0) {
             %>
             <p>사용자 정보가 성공적으로 업데이트되었습니다.</p>
@@ -66,6 +64,7 @@
                 out.println("<p>오류가 발생했습니다: " + e.getMessage() + "</p>");
                 e.printStackTrace();
             } finally {
+                // Closing resources in finally block
                 if (pstmt != null) try { pstmt.close(); } catch (SQLException ex) { }
                 if (conn != null) try { conn.close(); } catch (SQLException ex) { }
             }

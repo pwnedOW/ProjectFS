@@ -34,9 +34,9 @@ public class Cash_itemDAO {
 				int rsItem_no = rs.getInt("item_no");
 				String rsItem_name = rs.getString("item_name");
 				int rsItem_price = rs.getInt("item_price");
-				int rsItem_sales_status = rs.getInt("item_sales_status");
+				int rsitem_sort_no = rs.getInt("item_sort_no");
 
-				cash_item = new Cash_itemDTO(rsItem_no, rsItem_name, rsItem_price, rsItem_sales_status);
+				cash_item = new Cash_itemDTO(rsItem_no, rsItem_name, rsItem_price, rsitem_sort_no);
 			}
 
 		} catch (SQLException e) {
@@ -70,7 +70,7 @@ public class Cash_itemDAO {
 							rs.getInt("item_no"),
 							rs.getString("item_name"),
 							rs.getInt("item_price"),
-							rs.getInt("item_sales_status")
+							rs.getInt("item_sort_no")
 							);
 
 					equipment_itemList.add(cash_item);
@@ -107,7 +107,7 @@ public class Cash_itemDAO {
 							rs.getInt("item_no"),
 							rs.getString("item_name"),
 							rs.getInt("item_price"),
-							rs.getInt("item_sales_status")
+							rs.getInt("item_sort_no")
 							);
 
 					consumption_itemList.add(cash_item);
@@ -144,7 +144,7 @@ public class Cash_itemDAO {
 							rs.getInt("item_no"),
 							rs.getString("item_name"),
 							rs.getInt("item_price"),
-							rs.getInt("item_sales_status")
+							rs.getInt("item_sort_no")
 							);
 
 					probability_itemList.add(cash_item);
@@ -181,7 +181,7 @@ public class Cash_itemDAO {
 							rs.getInt("item_no"),
 							rs.getString("item_name"),
 							rs.getInt("item_price"),
-							rs.getInt("item_sales_status")
+							rs.getInt("item_sort_no")
 							);
 
 					pet_itemList.add(cash_item);
@@ -204,14 +204,14 @@ public class Cash_itemDAO {
 			String query = " UPDATE cash_item " +
 					" SET item_name = ? " +
 					" , item_price = ? " +
-					" , item_sales_status = ? " +
+					" , item_sort_no = ? " +
 					" WHERE item_no = ? ";
 
 			psmt = conn.prepareStatement(query);
 
 			psmt.setString(1, cash_item.getItem_name());
 			psmt.setInt(2, cash_item.getItem_price() );
-			psmt.setInt(3, cash_item.getItem_sales_status() );
+			psmt.setInt(3, cash_item.getItem_sort_no() );
 			psmt.setInt(4, cash_item.getItem_no() );
 
 			int result = psmt.executeUpdate();	
@@ -241,7 +241,7 @@ public class Cash_itemDAO {
 			psmt.setInt(1, cash_item.getItem_no());
 			psmt.setString(2, cash_item.getItem_name() );
 			psmt.setInt(3, cash_item.getItem_price() );
-			psmt.setInt(4, cash_item.getItem_sales_status() );
+			psmt.setInt(4, cash_item.getItem_sort_no() );
 
 			result = psmt.executeUpdate();
 

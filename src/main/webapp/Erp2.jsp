@@ -18,7 +18,6 @@
 	<header class="header">
 		<div class="header-container">
 			<h1 class="header-title">ERP 시스템</h1>
-			<button class="header-close-btn">x</button>
 		</div>
 	</header>
 	<main class="main">
@@ -41,26 +40,27 @@
 		</div>
 		<div class="container">
 			<div class="button-group">
-				<form action="<%=request.getContextPath()%>Erp.jsp" method="post">
-					<input class="button-group-button" type="submit" value=" 유저 정보 "
-						action="<%=request.getContextPath()%>Erp.jsp" method="post">
-
-				</form>
-				<form action="<%=request.getContextPath()%>Erp2.jsp" method="post">
-					<input class="button-group-button" type="submit" value=" 캐릭터 정보 "
-						action="<%=request.getContextPath()%>Erp2.jsp" method="post">
-
-				</form>
-				<form action="<%=request.getContextPath()%>Erp3.jsp" method="post">
-					<input class="button-group-button" type="submit" value="캐쉬 정보"
-						action="<%=request.getContextPath()%>Erp3.jsp" method="post">
-
-				</form>
-				<form action="<%=request.getContextPath()%>Erp4.jsp" method="post">
-					<input class="button-group-button" type="submit" value=" 아이템 정보 "
-						action="<%=request.getContextPath()%>Erp4.jsp" method="post">
-
-				</form>
+				<form action="<%= request.getContextPath() %>/Erp.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="유저 정보">
+                </form>
+                <form action="<%= request.getContextPath() %>/Erp2.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="캐릭터 정보">
+                </form>
+                <form action="<%= request.getContextPath() %>/Erp3.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="캐쉬 정보">
+                </form>
+                <form action="<%=request.getContextPath()%>Erp4_equipment_item.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="장비 아이템 정보">
+                </form>
+                <form action="<%=request.getContextPath()%>Erp5_consumption_item.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="소비 아이템 정보">
+                </form>
+                <form action="<%=request.getContextPath()%>Erp6_probability_item.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="확률 아이템 정보">
+                </form>
+                <form action="<%=request.getContextPath()%>Erp7_pet_item.jsp" method="post">
+                    <input class="button-group-button" type="submit" value="펫 아이템 정보">
+                </form>
 			</div>
 			<div class="table-container">
 				<table class="user-table">

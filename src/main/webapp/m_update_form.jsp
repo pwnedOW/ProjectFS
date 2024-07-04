@@ -18,8 +18,8 @@
         <h2 class="main-title">사용자 정보 수정</h2>
         <div class="form-container">
             <%
-            String user_no = request.getParameter("send_id");
-            out.println("고유번호: " + user_no);
+            String item_no = request.getParameter("send_id");
+            out.println("고유번호: " + item_no);
             Connection conn = null;
             PreparedStatement pstmt = null;
             ResultSet rs = null;
@@ -32,29 +32,21 @@
                 conn = DriverManager.getConnection(ORCL, dbUser, dbPass);
                 
                 // SELECT 쿼리 작성
-                String sql = "SELECT * FROM users A LEFT JOIN ingame_money B ON A.user_no = B.user_no JOIN time_log C ON A.user_no = C.user_no WHERE A.user_no = ?";
+                String sql = "select * from equipment_item where item_no = ?";
                 pstmt = conn.prepareStatement(sql);
-                pstmt.setInt(1, Integer.parseInt(user_no));
+                pstmt.setInt(1, Integer.parseInt(item_no));
                 rs = pstmt.executeQuery();
                 
                 if (rs.next()) {
             %>
             <form action="updateUserInfo.jsp" method="post"> <!-- 수정 폼 추가 -->
-                <input type="hidden" name="user_no" value="<%=rs.getInt("user_no")%>">
-                <label for="email">이메일:</label>
-                <input type="text" name="email" value="<%=rs.getString("email")%>"><br>
-                <label for="password">비밀번호:</label>
-                <input type="text" name="password" value="<%=rs.getString("password")%>"><br>
-                <label for="name">이름:</label>
-                <input type="text"maxlength="15" name="name" value="<%=rs.getString("name")%>"><br>
-                <label for="birth">생년월일:</label>
-                <input type="text" name="birth" value="<%=rs.getDate("birth")%>"><br>
-                <label for="tel">전화번호:</label>
-                <input type="text" name="tel" value="<%=rs.getString("tel")%>"><br>
-                <label for="money">재화:</label>
-                <input type="text" name="money" value="<%=rs.getInt("money")%>"><br>
-                <label for="last_login">최종접속시간:</label>
-                <input type="text" name="last_login" value="<%=rs.getTimestamp("last_login")%>"><br>
+                <input type="hidden" name="item_no" value="<%=rs.getInt("item_no")%>">
+                <label for="item_name">아이템이름:</label>
+                <input type="text" name="item_name" value="<%=rs.getString("item_name")%>"><br>
+                <label for="item_price">아이템가격:</label>
+                <input type="text" name="item_price" value="<%=rs.getString("item_price")%>"><br>
+                <label for="item_sales_status">아이템분류번호:</label>
+                <input type="text" name="item_sort_no" value="<%=rs.getString("item_sort_no")%>"><br>          
                 <input type="submit" value="저장">
             </form>
             <%

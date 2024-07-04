@@ -46,6 +46,8 @@
 	<script>
 		alert('구매가 완료되었습니다.');
 		window.close();
+		
+		opener.location.reload();
 	</script>
 	<%
 	}
