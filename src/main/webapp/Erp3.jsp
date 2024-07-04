@@ -78,8 +78,6 @@
 							<th>아이템구매시간</th>
 							<th>아이템번호</th>
 							<th>아이템갯수</th>
-							<th>수정</th>
-							<th>삭제</th>
 						</tr>
 					</thead>
 					<tbody id="userTableBody">
@@ -149,17 +147,6 @@
 							<td><%=rs.getTimestamp("item_purchase_time")%></td>
 							<td><%=rs.getInt("item_no")%></td>
 							<td><%=rs.getInt("item_count")%></td>
-
-
-							<td><a
-								href="<%=request.getContextPath()%>
-                /mupdate/m_update_form.jsp?send_id=<%=rs.getString("user_no")%>">수정</a>
-							</td>
-							<td><a
-								href="<%=request.getContextPath()%>
-                /mdelete/m_delete_pro.jsp?send_id=<%=rs.getString("user_no")%>">삭제</a>
-							</td>
-
 						</tr>
 
 

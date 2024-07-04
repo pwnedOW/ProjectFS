@@ -66,8 +66,6 @@
                             <th>전화번호</th>
                             <th>재화</th>
                             <th>최종접속시간</th>
-                            <th>수정</th>
-                            <th>삭제</th>
                         </tr>
                     </thead>
                     <tbody id="userTableBody">
@@ -111,8 +109,6 @@
                             <td><%= rs.getString("tel") %></td>
                             <td><%= rs.getInt("money") %></td>
                             <td><%= rs.getTimestamp("last_login") %></td>
-                            <td><a href="<%= request.getContextPath() %>/m_update_form.jsp?send_id=<%= rs.getString("user_no") %>">수정</a></td>
-                            <td><a href="<%= request.getContextPath() %>/mdelete/m_delete_pro.jsp?send_id=<%= rs.getString("user_no") %>">삭제</a></td>
                         </tr>
                         <%
                                 }
